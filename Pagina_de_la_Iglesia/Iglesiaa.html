@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa de Misericordia y Restauración</title>
+    <style>
+        :root {
+            --black: #000000;
+            --gold: #FFD700;
+            --dark-gold: #C0A040;
+            --bg-dark: #0f0f0f;
+            --text: #FFFFFF;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--text);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(192, 160, 64, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+        }
+
+        /* WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--black);
+            padding: 20px 0;
+            border-bottom: 2px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Navegación */
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+       /* Menús desplegables corregidos */
+.menu-item {
+    position: relative;
+    padding: 10px 0;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.menu-item:hover {
+    color: var(--gold);
+}
+
+.menu-item.has-dropdown::after {
+    content: '▼';
+    font-size: 0.7em;
+    margin-left: 8px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.menu-item.active::after {
+    transform: rotate(180deg);
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 15px;
+    width: 220px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.menu-item.active .dropdown {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+    color: var(--text);
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-item:hover {
+    color: var(--gold);
+    padding-left: 10px;
+}
+
+.menu-item::after {
+    content: '▼';
+    font-size: 0.7em;
+    margin-left: 8px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    color: var(--text);
+}
+
+.menu-item.active::after {
+    transform: rotate(180deg);
+}
+
+.menu-item:hover::after,
+.menu-item.active::after {
+    color: var(--gold);
+}
+        .dropdown-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-item:hover {
+            color: var(--gold);
+            padding-left: 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--dark-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-outline-gold {
+            background-color: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-outline-gold:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+
+        /* Secciones */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--gold);
+        }
+
+        /* Contenido de secciones */
+        .content-section {
+            background-color: var(--bg-dark);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .content-section h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* Galería */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            color: white;
+        }
+
+        /* Eventos */
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .event-card {
+            background-color: var(--bg-dark);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--gold);
+        }
+
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+
+        .event-content {
+            padding: 20px;
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .event-description {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .event-details {
+            display: none;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        /* Equipo Pastoral */
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            background-color: var(--bg-dark);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .team-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 20px;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            color: var(--text);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .team-contact {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        /* Ministerios */
+        .ministry-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .ministry-card {
+            background-color: var(--bg-dark);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .ministry-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .ministry-title {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ministry-icon {
+            font-size: 24px;
+        }
+
+        .ministry-description {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .ministry-schedule {
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .ministry-leader {
+            color: var(--text);
+            font-style: italic;
+        }
+
+        /* Modal de Login */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--bg-dark);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid var(--gold);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--gold);
+        }
+
+        .modal-title {
+            text-align: center;
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        /* Panel de Administración */
+        .admin-panel {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 50px;
+            display: none;
+        }
+
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .admin-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .admin-tab.active {
+            color: var(--gold);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .admin-tab:hover {
+            color: var(--gold);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-admin {
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .btn-admin:hover {
+            background-color: var(--dark-gold);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            padding: 30px 0;
+            border-top: 1px solid var(--gold);
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            color: var(--text);
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/573124448182" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">Casa de Misericordia y restauración</div>
+            <nav class="nav-menu">
+                <a href="#inicio" class="menu-item">Inicio</a>
+                
+                <div class="menu-item has-dropdown">
+                    <span>Nosotros</span>
+                    <div class="dropdown">
+                        <a href="#historia" class="dropdown-item">Nuestra Historia</a>
+                        <a href="#mision" class="dropdown-item">Misión y Visión</a>
+                        <a href="#pastores" class="dropdown-item">Nuestros Pastores y Lideres </a>
+                    </div>
+                </div>
+                
+                <div class="menu-item has-dropdown">
+                    <span>Ministerios</span>
+                    <div class="dropdown">
+                        <a href="#jovenes" class="dropdown-item">Jóvenes</a>
+                        <a href="#matrimonios" class="dropdown-item">Matrimonios</a>
+                        <a href="#intercesion" class="dropdown-item">Intercesión</a>
+                        <a href="#alabanza" class="dropdown-item">Alabanza</a>
+                    </div>
+                </div>
+                
+                <div class="menu-item has-dropdown">
+                    <span>Eventos</span>
+                    <div class="dropdown">
+                        <a href="#proximos-eventos" class="dropdown-item">Próximos Eventos</a>
+                        <a href="#retiros" class="dropdown-item">Retiros</a>
+                        <a href="#conferencias" class="dropdown-item">Actividades</a>
+                    </div>
+                </div>
+                
+                <a href="#contacto" class="menu-item">Contacto</a>
+                
+                <div class="menu-item has-dropdown" id="admin-toggle">
+                    <span>Administración</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h1>Bienvenidos a Casa de Misericordia y restauración</h1>
+            <p>Un lugar de encuentro con Dios, restauración y crecimiento espiritual</p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="#proximos-eventos" class="btn btn-gold">Próximos Eventos</a>
+                <a href="#contacto" class="btn btn-outline-gold">Contacto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <section id="nosotros" class="section">
+        <div class="container">
+            <h2 class="section-title">Nosotros</h2>
+            
+            <!-- Historia -->
+            <div id="historia" class="content-section">
+                <h3>Nuestra Historia</h3>
+                <p>Casa de Misericordia y Restauración fue fundada en el año ..... por el Pastor omar guerrero quien se aventuro a venir a esta Ciudad barranquilla y con un pequeño grupo de creyentes comprometidos con la obra de Dios. Comenzamos nuestras reuniones en un modesto apartamento , con apenas 10 miembros.</p>
+                <p>Con el paso de los años, Dios ha bendecido enormemente a nuestra congregación. ............</p>
+                <p>............</p>
+            </div>
+            
+            <!-- Misión y Visión -->
+            <div id="mision" class="content-section">
+                <h3>Misión y Visión</h3>
+                <h4 style="color: var(--gold); margin: 15px 0 10px;">Nuestra Misión</h4>
+                <p>Ser una iglesia que proclama el evangelio de Jesucristo con poder, que restaura vidas y familias a través de la Palabra de Dios, y que forma discípulos comprometidos con el Reino de los Cielos.</p>
+                
+                <h4 style="color: var(--gold); margin: 15px 0 10px;">Nuestra Visión</h4>
+                <p>Ser una iglesia relevante y transformadora en nuestra ciudad, que impacta todas las esferas de la sociedad con los valores del Reino de Dios, y que extiende su influencia a través de plantación de iglesias y ministerios especializados.</p>
+                
+                <h4 style="color: var(--gold); margin: 15px 0 10px;">Nuestros Valores</h4>
+                <ul style="margin-left: 20px;">
+                    <li>Amor a Dios y al prójimo</li>
+                    <li>Integridad y transparencia</li>
+                    <li>Excelencia en todo lo que hacemos</li>
+                    <li>Servicio desinteresado</li>
+                    <li>Unidad en la diversidad</li>
+                    <li>Creecia en la trinidad: Dios 3 en 1, el 
+                        Padre, Hijo y Espiritu santo
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Pastores -->
+            <div id="pastores" class="content-section">
+                <h3>Nuestro Equipo Pastoral y Liderazgo</h3>
+                <div class="team-container">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="https://via.placeholder.com/150" alt="Pastor Principal">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Pastor Omar guerrero</h3>
+                            <p class="team-role">Pastor Principal</p>
+                            <p class="team-contact">No disponible</p>
+                            <p class="team-contact">+57 312 4448182</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="https://via.placeholder.com/150" alt="Pastora">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name"> Proximamente </h3>
+                            <p class="team-role">Pastora Proximamente </p>
+                            <p class="team-contact">No disponible</p>
+                            <p class="team-contact">No disponible</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="https://via.placeholder.com/150" alt="Pastor de Jóvenes">
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Proximamente</h3>
+                            <p class="team-role">Liderazgo de Jóvenes</p>
+                            <p class="team-contact">No disponible</p>
+                            <p class="team-contact">No disponible</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Ministerios -->
+    <section id="ministerios" class="section" style="background-color: var(--bg-dark);">
+        <div class="container">
+            <h2 class="section-title">Nuestros Ministerios</h2>
+            
+            <!-- Jóvenes -->
+            <div id="jovenes" class="content-section">
+                <h3><i class="fas fa-users ministry-icon"></i> Ministerio de Jóvenes</h3>
+                <p class="ministry-description">Nuestro ministerio de jóvenes "Generación de Fe" está dedicado a guiar a los jóvenes en su relación con Cristo a través de enseñanzas relevantes, actividades dinámicas y un ambiente de compañerismo.</p>
+                <p class="ministry-schedule"><i class="far fa-calendar-alt"></i> Reuniones: Sabados 6:00 PM</p>
+                <p class="ministry-leader"><i class="fas fa-user"></i> Líder: No disponible</p>
+                <div class="gallery" style="margin-top: 20px;">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/600x400" alt="Reunión de jóvenes">
+                        <div class="gallery-caption">Reunión Semanal</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/600x400" alt="Retiro de jóvenes">
+                        <div class="gallery-caption">Retiro Anual</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Matrimonios -->
+            <div id="matrimonios" class="content-section">
+                <h3><i class="fas fa-heart ministry-icon"></i> Ministerio de Matrimonios</h3>
+                <p class="ministry-description">"Cimientos Firmes" es nuestro ministerio dedicado a fortalecer los matrimonios según los principios bíblicos, a través de talleres, conferencias y grupos pequeños de apoyo.</p>
+                <p class="ministry-schedule"><i class="far fa-calendar-alt"></i> Reuniones: Proximamente</p>
+                <p class="ministry-leader"><i class="fas fa-user"></i> Líderes: Proximamente</p>
+            </div>
+            
+            <!-- Intercesión -->
+            <div id="intercesion" class="content-section">
+                <h3><i class="fas fa-pray ministry-icon"></i> Ministerio de Intercesión</h3>
+                <p class="ministry-description">El grupo "Guerreros de Oración" se reúne regularmente para interceder por las necesidades de la iglesia, la ciudad y las naciones, siguiendo el mandato bíblico de orar sin cesar.</p>
+                <p class="ministry-schedule"><i class="far fa-calendar-alt"></i> Proximamente</p>
+                <p class="ministry-leader"><i class="fas fa-user"></i> Líder: Proximamente</p>
+            </div>
+            
+            <!-- Alabanza -->
+            <div id="alabanza" class="content-section">
+                <h3><i class="fas fa-music ministry-icon"></i> Ministerio de Alabanza</h3>
+                <p class="ministry-description">Nuestro equipo de alabanza "Voces de Gloria" lidera la adoración en nuestros cultos, creando una atmósfera donde la presencia de Dios se manifiesta poderosamente.</p>
+                <p class="ministry-schedule"><i class="far fa-calendar-alt"></i> Proximamente</p>
+                <p class="ministry-leader"><i class="fas fa-user"></i> Líder: Proximamente/p>
+                <div class="gallery" style="margin-top: 20px;">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/600x400" alt="Equipo de alabanza">
+                        <div class="gallery-caption">Equipo de Alabanza</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Eventos -->
+    <section id="proximos-eventos" class="section">
+        <div class="container">
+            <h2 class="section-title">Próximos Eventos</h2>
+            
+            <div class="events-container">
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Campaña espiritual">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <i class="far fa-calendar-alt"></i> 23 Mayo 2025
+                        </div>
+                        <h3 class="event-title">Campaña Espiritual</h3>
+                        <p class="event-description">Un Viernes de renovación y encuentro con Dios en las montañas.</p>
+                        <button class="btn btn-outline-gold view-details" data-event="1">Más información</button>
+                        <div class="event-details" id="event-details-1">
+                            <h4 style="color: var(--gold); margin-bottom: 10px;">Detalles del Evento:</h4>
+                            <p><strong>Lugar:</strong> Cra. 8 G, Suroccidente, Barranquilla, Atlántico</p>
+                            <p><strong>Costo:</strong> Ninguno</p>
+                            <p><strong>Incluye:</strong> Orquesta, Danzarinas, Palabra de Dios</p>
+                            <p><strong>Traer:</strong> Biblia, cuaderno, ropa abrigadora, </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Conferencia de fe">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <i class="far fa-calendar-alt"></i> Proximamente
+                        </div>
+                        <h3 class="event-title">No disponible</h3>
+                        <p class="event-description">No disponible</p>
+                        <button class="btn btn-outline-gold view-details" data-event="2">Más información</button>
+                        <div class="event-details" id="event-details-2">
+                            <h4 style="color: var(--gold); margin-bottom: 10px;">Detalles del Evento:</h4>
+                            <p><strong>Expositor:</strong> No disponible</p>
+                            <p><strong>Horario:</strong> No disponible</p>
+                            <p><strong>No disponible:</strong> 
+                                <ul>
+                                    <li>No disponible</li>
+                                    <li>No disponible</li>
+                                    <li>No disponible</li>
+                                </ul>
+                            </p>
+                            <p><strong>Costo:</strong> No disponible</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://via.placeholder.com/600x400" alt="No disponible">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <i class="far fa-calendar-alt"></i> No disponible
+                        </div>
+                        <h3 class="event-title">No disponible</h3>
+                        <p class="event-description">No disponible</p>
+                        <button class="btn btn-outline-gold view-details" data-event="3">Más información</button>
+                        <div class="event-details" id="event-details-3">
+                            <h4 style="color: var(--gold); margin-bottom: 10px;">Detalles del Evento:</h4>
+                            <p><strong>Horario:</strong> No disponible</p>
+                            <p><strong>Especial:</strong> No disponible</p>
+                            <p><strong>Traer:</strong> No disponible</p>
+                            <p><strong>Ofrenda especial:</strong> No disponible</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Retiros -->
+            <div id="retiros" class="content-section" style="margin-top: 50px;">
+                <h3>Retiros Anuales</h3>
+                <p>Organizamos varios retiros a lo largo del año para diferentes grupos de nuestra congregación:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div style="background-color: rgba(255, 215, 0, 0.1); padding: 15px; border-radius: 8px; border: 1px solid var(--gold);">
+                        <h4 style="color: var(--gold); margin-bottom: 10px;">Retiro de Varones</h4>
+                        <p><i class="far fa-calendar-alt"></i> No disponible</p>
+                        <p><i class="fas fa-map-marker-alt"></i> No disponible</p>
+                    </div>
+                    <div style="background-color: rgba(255, 215, 0, 0.1); padding: 15px; border-radius: 8px; border: 1px solid var(--gold);">
+                        <h4 style="color: var(--gold); margin-bottom: 10px;">Retiro de Damas</h4>
+                        <p><i class="far fa-calendar-alt"></i>No disponible</p>
+                        <p><i class="fas fa-map-marker-alt"></i> No disponible</p>
+                    </div>
+                    <div style="background-color: rgba(255, 215, 0, 0.1); padding: 15px; border-radius: 8px; border: 1px solid var(--gold);">
+                        <h4 style="color: var(--gold); margin-bottom: 10px;">Retiro Familiar</h4>
+                        <p><i class="far fa-calendar-alt"></i> No disponible</p>
+                        <p><i class="fas fa-map-marker-alt"></i> No disponible</p>
+                    </div>'
+                    <div style="background-color: rgba(255, 215, 0, 0.1); padding: 15px; border-radius: 8px; border: 1px solid var(--gold);">
+                        <h4 style="color: var(--gold); margin-bottom: 10px;">Retiro de Jovenes</h4>
+                        <p><i class="far fa-calendar-alt"></i> No disponible</p>
+                        <p><i class="fas fa-map-marker-alt"></i> No disponible</p>
+                    </div>'
+                </div>
+            </div>
+            
+            <!--  -->
+            <div id="Actividades" class="content-section" style="margin-top: 30px;">
+                <h3>Actividades Especiales</h3>
+                <p>Nuestro calendario de Actividades :</p>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                    <thead>
+                        <tr style="background-color: rgba(255, 215, 0, 0.2);">
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--gold);">Fecha</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--gold);">Encuentro</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--gold);">Lugar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255, 215, 0, 0.2);">
+                            <td style="padding: 12px;">Todos los Domingos 9 AM</td>
+                            <td style="padding: 12px;">Culto Dominical</td>
+                            <td style="padding: 12px;">MANZANA 13 CASA 6 CIUDAD CARIBE</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 215, 0, 0.2);">
+                            <td style="padding: 12px;">Sabados 6 PM</td>
+                            <td style="padding: 12px;">Culto De Jovenes</td>
+                            <td style="padding: 12px;">MANZANA 13 CASA 6 CIUDAD CARIBE</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 215, 0, 0.2);">
+                            <td style="padding: 12px;">Casa de emaus </td>
+                            <td style="padding: 12px;">No disponible</td>
+                            <td style="padding: 12px;">PNo disponible</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 215, 0, 0.2);">
+                            <td style="padding: 12px;">Sabados 9 AM</td>
+                            <td style="padding: 12px;">Ayuno Congregaciónal</td>
+                            <td style="padding: 12px;">MANZANA 13 CASA 6 CIUDAD CARIBE</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255, 215, 0, 0.2);">
+                            <td style="padding: 12px;">Miercoles 7 PM</td>
+                            <td style="padding: 12px;">Culto adoración</td>
+                            <td style="padding: 12px;">MANZANA 13 CASA 6 CIUDAD CARIBE</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section" style="background-color: var(--bg-dark);">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                    <div style="background-color: var(--bg-dark); padding: 20px; border-radius: 10px; border: 1px solid var(--gold); text-align: center;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 30px; color: var(--gold); margin-bottom: 15px;"></i>
+                        <h3 style="color: var(--gold); margin-bottom: 10px;">Dirección</h3>
+                        <p>MANZANA 13 CASA 6 CIUDAD CARIBE</p>
+                        <p>Barranquilla, Atlantico, Colombia</p>
+                    </div>
+                    <div style="background-color: var(--bg-dark); padding: 20px; border-radius: 10px; border: 1px solid var(--gold); text-align: center;">
+                        <i class="fas fa-phone" style="font-size: 30px; color: var(--gold); margin-bottom: 15px;"></i>
+                        <h3 style="color: var(--gold); margin-bottom: 10px;">Teléfono</h3>
+                        <p>+57 312 4448182</p>
+                        
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/573124448182" class="btn btn-gold" target="_blank" style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="https://facebook.com/casademisericordia" class="btn btn-outline-gold" target="_blank" style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                    <a href="https://instagram.com/casademisericordia" class="btn btn-outline-gold" target="_blank" style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="mailto:info@casademisericordia.com" class="btn btn-outline-gold" style="display: flex; align-items: center; gap: 8px;">
+                        <i class="far fa-envelope"></i> Email
+                    </a>
+                </div>
+                
+                <!-- Mapa -->
+                <div style="margin-top: 40px; border: 1px solid var(--gold); border-radius: 10px; overflow: hidden;">
+                    <iframe src="https://www.google.com/maps/dir//10.9543579,-74.8554388/@10.9542644,-74.8561335,19z/data=!4m2!4m1!3e0?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Login -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="modal-title">Acceso de Administración</h3>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="Andresra" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="Opositivo30." class="form-control" required>
+                </div>
+                <button type="submit" class="btn-admin">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Panel de Administración -->
+    <section class="section">
+        <div class="container">
+            <div class="admin-panel" id="admin-panel">
+                <div class="admin-tabs">
+                    <div class="admin-tab active" data-tab="events">Eventos</div>
+                    <div class="admin-tab" data-tab="team">Equipo Pastoral</div>
+                    <div class="admin-tab" data-tab="leaders">Líderes</div>
+                    <div class="admin-tab" data-tab="content">Contenido</div>
+                </div>
+
+                <div class="tab-content active" id="events-tab">
+                    <h3>Agregar Nuevo Evento</h3>
+                    <form id="event-form">
+                        <div class="form-group">
+                            <label for="event-title">Título del Evento</label>
+                            <input type="text" id="event-title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Fecha</label>
+                            <input type="date" id="event-date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-type">Tipo de Evento</label>
+                            <select id="event-type" class="form-control" required>
+                                <option value="">Seleccione un tipo</option>
+                                <option value="conferencia">Conferencia</option>
+                                <option value="retiro">Retiro</option>
+                                <option value="culto">Culto Especial</option>
+                                <option value="taller">Taller</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-description">Descripción</label>
+                            <textarea id="event-description" class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-image">URL de la Imagen</label>
+                            <input type="url" id="event-image" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-details">Detalles Adicionales</label>
+                            <textarea id="event-details" class="form-control" rows="5" placeholder="Lugar, costo, horario, qué traer, etc."></textarea>
+                        </div>
+                        <button type="submit" class="btn-admin">Agregar Evento</button>
+                    </form>
+                </div>
+
+                <div class="tab-content" id="team-tab">
+                    <h3>Agregar Miembro del Equipo Pastoral</h3>
+                    <form id="team-form">
+                        <div class="form-group">
+                            <label for="team-name">Nombre Completo</label>
+                            <input type="text" id="team-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="team-role">Rol/Cargo</label>
+                            <input type="text" id="team-role" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="team-bio">Biografía/Breve descripción</label>
+                            <textarea id="team-bio" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="team-contact">Contacto (Email/Teléfono)</label>
+                            <input type="text" id="team-contact" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="team-image">URL de la Imagen</label>
+                            <input type="url" id="team-image" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn-admin">Agregar Miembro</button>
+                    </form>
+                </div>
+
+                <div class="tab-content" id="leaders-tab">
+                    <h3>Agregar Líder de Ministerio</h3>
+                    <form id="leader-form">
+                        <div class="form-group">
+                            <label for="leader-name">Nombre Completo</label>
+                            <input type="text" id="leader-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="leader-ministry">Ministerio</label>
+                            <select id="leader-ministry" class="form-control" required>
+                                <option value="">Seleccione un ministerio</option>
+                                <option value="Jóvenes">Jóvenes</option>
+                                <option value="Matrimonios">Matrimonios</option>
+                                <option value="Intercesión">Intercesión</option>
+                                <option value="Alabanza">Alabanza</option>
+                                <option value="Niños">Niños</option>
+                                <option value="Misiones">Misiones</option>
+                                <option value="Social">Acción Social</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="leader-contact">Contacto (Email/Teléfono)</label>
+                            <input type="text" id="leader-contact" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="leader-image">URL de la Imagen</label>
+                            <input type="url" id="leader-image" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="leader-schedule">Horario de Reuniones</label>
+                            <input type="text" id="leader-schedule" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn-admin">Agregar Líder</button>
+                    </form>
+                </div>
+
+                <div class="tab-content" id="content-tab">
+                    <h3>Editar Contenido General</h3>
+                    <form id="content-form">
+                        <div class="form-group">
+                            <label for="content-section">Sección a Editar</label>
+                            <select id="content-section" class="form-control" required>
+                                <option value="">Seleccione una sección</option>
+                                <option value="historia">Nuestra Historia</option>
+                                <option value="mision">Misión y Visión</option>
+                                <option value="valores">Nuestros Valores</option>
+                                <option value="creemos">Lo que Creemos</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="content-title">Título</label>
+                            <input type="text" id="content-title" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="content-text">Contenido</label>
+                            <textarea id="content-text" class="form-control" rows="10"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="content-image">URL de Imagen (opcional)</label>
+                            <input type="url" id="content-image" class="form-control">
+                        </div>
+                        <button type="submit" class="btn-admin">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <div class="footer-logo">Casa de Misericordia</div>
+                <div class="footer-links">
+                    <a href="#inicio" class="footer-link">Inicio</a>
+                    <a href="#nosotros" class="footer-link">Nosotros</a>
+                    <a href="#ministerios" class="footer-link">Ministerios</a>
+                    <a href="#proximos-eventos" class="footer-link">Eventos</a>
+                    <a href="#contacto" class="footer-link">Contacto</a>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://facebook.com/casademisericordia" class="social-link" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com/casademisericordia" class="social-link" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://youtube.com/casademisericordia" class="social-link" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 30px; color: var(--text); opacity: 0.7;">
+            &copy; 2025 Casa de Misericordia y Restauración. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Control de menús desplegables
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuItems = document.querySelectorAll('.has-dropdown');
+            
+            menuItems.forEach(item => {
+                const title = item.querySelector('span');
+                
+                title.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    item.classList.toggle('active');
+                    
+                    // Cerrar otros dropdowns
+                    menuItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                });
+                
+                // Cerrar al hacer clic en un enlace del dropdown
+                const dropdownLinks = item.querySelectorAll('.dropdown-item');
+                dropdownLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        item.classList.remove('active');
+                    });
+                });
+            });
+            
+            // Cerrar todos al hacer clic fuera
+            document.addEventListener('click', function() {
+                menuItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+            });
+        });
+    
+        // ... (el resto de tu JavaScript existente)
+    </script>
+        // ... (mantén el resto de tu JavaScript existente)
+    </script>
+        // Sistema de Login
+        const loginModal = document.getElementById('login-modal');
+        const adminPanel = document.getElementById('admin-panel');
+        const adminToggle = document.getElementById('admin-toggle');
+        const closeModal = document.querySelector('.close-modal');
+        const loginForm = document.getElementById('login-form');
+
+        // Mostrar modal al hacer clic en Administración
+        adminToggle.addEventListener('click', function() {
+            loginModal.style.display = 'flex';
+        });
+
+        // Cerrar modal
+        closeModal.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+        });
+
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Validar login
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === 'Andresra' && password === 'Opositivo30') {
+                loginModal.style.display = 'none';
+                adminPanel.style.display = 'block';
+                alert('Bienvenido al panel de administración');
+                
+                // Desplazarse al panel de administración
+                adminPanel.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('Usuario o contraseña incorrectos');
+            }
+        });
+
+        // Sistema de pestañas
+        const tabs = document.querySelectorAll('.admin-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remover clase active de todas las pestañas y contenidos
+                tabs.forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Agregar clase active a la pestaña seleccionada
+                this.classList.add('active');
+                
+                // Mostrar el contenido correspondiente
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Formulario de Eventos
+        document.getElementById('event-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('event-title').value;
+            const date = document.getElementById('event-date').value;
+            const type = document.getElementById('event-type').value;
+            const description = document.getElementById('event-description').value;
+            const image = document.getElementById('event-image').value;
+            const details = document.getElementById('event-details').value;
+            
+            // Formatear fecha
+            const eventDate = new Date(date);
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = eventDate.toLocaleDateString('es-ES', options);
+            
+            // Crear nuevo evento
+            const eventsContainer = document.querySelector('.events-container');
+            const newEvent = document.createElement('div');
+            newEvent.className = 'event-card';
+            newEvent.innerHTML = `
+                <div class="event-image">
+                    <img src="${image}" alt="${title}">
+                </div>
+                <div class="event-content">
+                    <div class="event-date">
+                        <i class="far fa-calendar-alt"></i> ${formattedDate}
+                    </div>
+                    <h3 class="event-title">${title}</h3>
+                    <p class="event-description">${description}</p>
+                    <button class="btn btn-outline-gold view-details" data-event="${Date.now()}">Más información</button>
+                    <div class="event-details" id="event-details-${Date.now()}">
+                        ${details.replace(/\n/g, '<br>')}
+                    </div>
+                </div>
+            `;
+            
+            eventsContainer.prepend(newEvent);
+            
+            // Limpiar formulario
+            this.reset();
+            
+            // Mostrar mensaje de éxito
+            alert('Evento agregado correctamente!');
+        });
+
+        // Mostrar/ocultar detalles del evento
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('view-details')) {
+                const eventId = e.target.getAttribute('data-event');
+                const details = document.getElementById(`event-details-${eventId}`);
+                
+                if (details.style.display === 'block') {
+                    details.style.display = 'none';
+                    e.target.textContent = 'Más información';
+                } else {
+                    details.style.display = 'block';
+                    e.target.textContent = 'Menos información';
+                }
+            }
+        });
+
+        // Formulario de Equipo Pastoral
+        document.getElementById('team-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('team-name').value;
+            const role = document.getElementById('team-role').value;
+            const bio = document.getElementById('team-bio').value;
+            const contact = document.getElementById('team-contact').value;
+            const image = document.getElementById('team-image').value;
+            
+            // Crear nuevo miembro del equipo
+            const teamContainer = document.querySelector('.team-container');
+            const newMember = document.createElement('div');
+            newMember.className = 'team-card';
+            newMember.innerHTML = `
+                <div class="team-image">
+                    <img src="${image}" alt="${name}">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">${name}</h3>
+                    <p class="team-role">${role}</p>
+                    ${bio ? `<p class="team-bio">${bio}</p>` : ''}
+                    <p class="team-contact">${contact}</p>
+                </div>
+            `;
+            
+            teamContainer.appendChild(newMember);
+            
+            // Limpiar formulario
+            this.reset();
+            
+            // Mostrar mensaje de éxito
+            alert('Miembro del equipo agregado correctamente!');
+        });
+
+        // Formulario de Líderes
+        document.getElementById('leader-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('leader-name').value;
+            const ministry = document.getElementById('leader-ministry').value;
+            const contact = document.getElementById('leader-contact').value;
+            const image = document.getElementById('leader-image').value;
+            const schedule = document.getElementById('leader-schedule').value;
+            
+            // En una implementación real, aquí guardarías los datos en una base de datos
+            alert(`Líder ${name} del ministerio ${ministry} agregado correctamente!\nHorario: ${schedule}`);
+            
+            // Limpiar formulario
+            this.reset();
+        });
+
+        // Formulario de Contenido
+        document.getElementById('content-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const section = document.getElementById('content-section').value;
+            const title = document.getElementById('content-title').value;
+            const text = document.getElementById('content-text').value;
+            const image = document.getElementById('content-image').value;
+            
+            // En una implementación real, actualizarías el contenido correspondiente
+            alert(`Contenido de la sección ${section} actualizado correctamente!`);
+            
+            // Limpiar formulario
+            this.reset();
+        });
+
+        // Smooth scrolling para los enlaces del menú
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                // Excepción para los enlaces de dropdown
+                if (this.classList.contains('dropdown-item')) {
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Cerrar el dropdown
+                        this.closest('.dropdown').style.opacity = '0';
+                        this.closest('.dropdown').style.visibility = 'hidden';
+                        
+                        // Desplazarse al objetivo
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }, 300);
+                    }
+                    return;
+                }
+                
+                // Comportamiento normal para otros enlaces
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animación al hacer scroll
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            const whatsappBtn = document.querySelector('.whatsapp-float');
+            
+            if (scrollPosition > 300) {
+                whatsappBtn.style.transform = 'scale(1)';
+            } else {
+                whatsappBtn.style.transform = 'scale(0)';
+            }
+        });
+    </script>
+</body>
+</html>\
+<!-- Versión 1.1 - Botón WhatsApp activado -->
